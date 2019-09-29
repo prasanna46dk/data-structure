@@ -1,5 +1,5 @@
 #include "string/string.h"
-
+#include <math.h>
 char maxOccuringChar(char *str)
 {
   unsigned count[ASCII] = {0}, i;
@@ -70,13 +70,31 @@ char *rmFromFirstString(char *src, char *dest)
   printf("\n");
 }
 
-bool areRotation(char *src, char *dest)
+bool
+areRotation(char *src, char *dest)
 {
-  int result = 0, i;
-  for (i = 0; src[i] != '\0'; i++)
-    result ^= src[i];
-  for (i = 0; dest[i] != '\0'; i++)
-    result ^= dest[i];
+  int result = 0, i, j, shift, rid, dlen, slen;
 
-  return (result==0);
+  slen = strlen(src);
+  dlen = strlen (dest);
+
+  if(dlen != slen)
+    return false;
+
+  for (i = 0, j = 0; dest[j] != '\0'; j++) {
+    if (src[i] == dest[j])
+      break;
+  }
+
+  shift = j;
+  for (i = 0; src[i] != '\0'; i++) {
+    if (i + shift < dlen) {
+      if (src[i] != dest[i+shift])
+	return false;
+    } else {
+      if (src[i] != dest[(i+shift) % dlen])
+	return false;
+    }
+  }
+  return true;
 }
