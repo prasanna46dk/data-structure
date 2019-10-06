@@ -30,7 +30,9 @@ int main()
 	 (areRotation(ROTATION_TEST_1, ROTATION_TEST_2) == 0 ? "not ": ""));
 
   // do not pass INPUT directly because INPUT is read only memory and if you try
-  // try changing char you will get segmenation fault.
+  // to change char you will get segmentation fault.
+  // checkout this link for further explanation:
+  // https://stackoverflow.com/questions/164194/why-do-i-get-a-segmentation-fault-when-writing-to-a-string-initialized-with-cha
   strcpy(str, INPUT);
   printf("Reverse string: %s\n", revStrRecursion(str, 0, strlen(str)-1));
   printf("Reverse string: %s\n", revStr(str));
