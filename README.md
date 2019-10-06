@@ -16,3 +16,4 @@ WIP: String programs.
        5. Check if 2 strings are rotation of each other.
        6. Reverse string recursion.
        7. Reverse string without recursuion.
+       8. Print all permutations of a string.

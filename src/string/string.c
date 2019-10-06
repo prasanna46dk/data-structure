@@ -99,20 +99,27 @@ bool areRotation(char *src, char *dest)
   return true;
 }
 
+void swap(char *src, unsigned start, unsigned end)
+{
+  if (start != end) {
+    src[start] ^= src[end];
+    src[end] ^= src[start];
+    src[start] ^= src[end];
+  }
+}
+
 char *revStrRecursion(char *str, unsigned start, unsigned end)
 {
-  if(end == 0 || end == 1)
+  if(end <= 1)
     return str;
 
   if (start >= end)
     return str;
 
   if(start < end) {
-    str[start] ^= str[end];
-    str[end] ^= str[start];
-    str[start++] ^= str[end--];
+    swap(str, start, end);
   }
-  return revStrRecursion(str, start, end);
+  return revStrRecursion(str, ++start, --end);
 }
 
 char *revStr(char *str)
@@ -121,9 +128,21 @@ char *revStr(char *str)
   if(!str)
     return str;
   while (start < end){
-    str[start] ^= str[end];
-    str[end] ^= str[start];
-    str[start++] ^= str[end--];
+    swap(str, start++, end--);
   }
   return str;
+}
+
+void permuteString(char *str, unsigned left, unsigned right)
+{
+  unsigned i;
+  if (left == right)
+    printf("%s\n",str);
+  else {
+    for (i = left; i <= right; i++) {
+      swap(str, left, i);
+      permuteString(str, left+1, right);
+      swap(str, left, i);
+    }
+  }
 }
