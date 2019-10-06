@@ -10,3 +10,5 @@ char *removeDuplicates(char *str, char *str2);
 void printDuplicates(char *str);
 char *rmFromFirstString(char *src, char *dest);
 bool areRotation(char *src, char *dest);
+char *revStrRecursion(char *str, unsigned start, unsigned end);
+char *revStr(char *str);
