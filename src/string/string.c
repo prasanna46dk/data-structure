@@ -146,3 +146,128 @@ void permuteString(char *str, unsigned left, unsigned right)
     }
   }
 }
+
+char firstNonRepeatingChar(char *str)
+{
+  unsigned count[ASCII] = {0}, i;
+  for (i = 0; str[i] != '\0'; i++) {
+    count[(int) str[i]] += 1;
+  }
+
+  for (i = 0; str[i] != '\0'; i++) {
+    if (count[(int)str[i]] == 1)
+      return str[i];
+  }
+  return '\0';
+}
+
+char *reverseWords(char *str)
+{
+  unsigned i = 0, start = 0, end;
+  while (str[i] != '\0') {
+    while (str[i] != ' ' && str[i] != '\0')
+      i++;
+    end = i-1;
+    while (start < end)
+      swap(str, start++, end--);
+    start = i+1;
+  }
+  return str;
+}
+
+bool areAnagram(char *src, char *dest)
+{
+  int result = 0, i;
+  for (i = 0; src[i] != '\0'; i++) {
+    result ^= src[i];
+  }
+
+  for (i = 0; dest[i] != '\0'; i++) {
+    result ^= dest[i];
+  }
+  return (result == 0);
+}
+
+bool isPalindrome(char *str)
+{
+  unsigned start = 0, end = strlen(str)-1;
+  while (start < end) {
+    if (str[start++] != str[end--])
+      return false;
+  }
+  return true;
+}
+
+int strToInt(char *str)
+{
+  unsigned i;
+  int sign, result;
+  while(str[i] == ' ' ||
+	str[i] == '\t') {
+    i++;
+  }
+  sign = (str[i] == '-') ? -1 : 1;
+  while (str[i] != '\0') {
+    result = (10*result) + (str[i]-'0');
+  }
+  return sign*result;
+}
+
+char *rmGivenChar(char *str, char c)
+{
+  unsigned i = 0, j = 0;
+  while (true) {
+    while (str[i++] == c);
+    str[j++] = str[i];
+    if (str[i] != '\0')
+      i++;
+  }
+  str[j] = '\0';
+  return str;
+}
+
+unsigned countWords(char *str)
+{
+  unsigned count = 0, i = 0;
+  while(true) {
+    while (str[i] == ' ' ||
+	   str[i] == '\t')
+      i++;
+    if (str[i] == ' ') count++;
+    if (str[i] == '\0')
+      break;
+    i++;
+  }
+  return count;
+}
+
+bool isValidParenthesis(char *str, int length)
+{
+  unsigned i = 0, j = 0;
+  char stk[length];
+  while(str[i] != '\0') {
+    if (str[i] == '(' ||
+	str[i] == '{' ||
+	str[i] == '[' ||
+	str[i] == '<') {
+      stk[j++] = str[i];
+    }
+    if (str[i] == ')') {
+      if (stk[j] != '(')
+	return false;
+    } else if (str[i] == '}') {
+      if (stk[j] != '{')
+	return false;
+    } else if (str[i] == ']') {
+      if (stk[j] != '[')
+	return false;
+    } else if (str[i] == '>') {
+      if (stk[j] != '<')
+	return false;
+    } else {
+      stk[j--] = '\0';
+    }
+    i++;
+  }
+  return (stk[0] == '\0');
+}

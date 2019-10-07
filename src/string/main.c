@@ -14,9 +14,9 @@
 #define TEST_INPUT_8 "rasanna"
 #define TEST_INPUT_9 "Prasanna"
 #define TEST_INPUT_10 "Prasaann"
-#define TEST_INPUT_11 "Prasanna"
-#define TEST_INPUT_12 "rasnnaPa"
-#define TEST_INPUT_13 "P Dat"
+#define TEST_INPUT_11 "143"
+#define TEST_INPUT_12 "-645"
+#define TEST_INPUT_13 "nitin"
 
 int main()
 {
@@ -40,5 +40,28 @@ int main()
   printf("Permuations of string %s are:\n",str);
   strcpy(str, "HOW");
   permuteString(str, 0, strlen(str)-1);
+  printf("First Non repeating character in '%s' is '%c'\n",
+	 str, firstNonRepeatingChar(str));
+  strcpy(str, TEST_INPUT);
+  printf("Reversed words of string '%s' are '%s'\n",str,reverseWords(str));
+  printf("'%s', '%s' are %sanagram of each other\n",
+	 TEST_INPUT_1, TEST_INPUT_6,
+	 (areAnagram(TEST_INPUT_1, TEST_INPUT_6) == 0 ? "not ": ""));
+  printf("'%s' is %spalindrome\n",
+	 TEST_INPUT_13,(isPalindrome(TEST_INPUT_13) == 0 ? "not ": ""));
+
+  printf("String to int of '%s' is %d\n",
+	 TEST_INPUT_11, strToInt(TEST_INPUT_11));
+  printf("String to int of '%s' is %d\n",
+	 TEST_INPUT_12, strToInt(TEST_INPUT_12));
+  strcpy(str, TEST_INPUT_1);
+  printf("Remove Char '%c' from '%s': '%s'\n", 'a',
+	 TEST_INPUT_1, rmGivenChar(str, 'a'));
+  printf("Number of words in %s are %d\n",TEST_INPUT, countWords(TEST_INPUT));
+  printf("'%s' is %sa valid string\n",
+	 "[(){}[]]",
+	 (isValidParenthesis("[(){}[]]",
+			     strlen("[(){}[]]")) == 0 ? "not ": ""));
+
   return 0;
 }
