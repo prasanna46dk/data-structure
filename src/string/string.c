@@ -261,17 +261,29 @@ bool isValidParenthesis(char *str, int length)
 	str[i] == '<') {
       stk[j] = str[i];
     } else if (str[i] == ')') {
-      if (stk[j] != '(')
+      if (stk[--j] != '(')
 	return false;
+      else {
+	stk[j--] = '\0';
+      }
     } else if (str[i] == '}') {
-      if (stk[j] != '{')
+      if (stk[--j] != '{')
 	return false;
+      else {
+	stk[j--] = '\0';
+      }
     } else if (str[i] == ']') {
-      if (stk[j] != '[')
+      if (stk[--j] != '[')
 	return false;
+      else {
+	stk[j--] = '\0';
+      }
     } else if (str[i] == '>') {
-      if (stk[j] != '<')
+      if (stk[--j] != '<')
 	return false;
+      else {
+	stk[j--] = '\0';
+      }
     } else {
       stk[j] = '\0';
     }

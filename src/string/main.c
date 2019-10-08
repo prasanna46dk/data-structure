@@ -43,7 +43,8 @@ int main()
   printf("First Non repeating character in '%s' is '%c'\n",
 	 str, firstNonRepeatingChar(str));
   strcpy(str, TEST_INPUT);
-  printf("Reversed words of string '%s' are '%s'\n",str,reverseWords(str));
+  printf("Reversed words of string '%s' are '%s'\n",
+	 TEST_INPUT,reverseWords(str));
   printf("'%s', '%s' are %sanagram of each other\n",
 	 TEST_INPUT_1, TEST_INPUT_6,
 	 (areAnagram(TEST_INPUT_1, TEST_INPUT_6) == 0 ? "not ": ""));
@@ -59,9 +60,9 @@ int main()
 	 TEST_INPUT_1, rmGivenChar(str, 'a'));
   printf("Number of words in %s are %d\n",TEST_INPUT, countWords(TEST_INPUT));
   printf("'%s' is %sa valid string\n",
-	 "[(){}[]]",
-	 (isValidParenthesis("[(){}[]]",
-			     strlen("[(){}[]]")) == 0 ? "not ": ""));
+	 "[(){}[]",
+	 (isValidParenthesis("[(){}[]",
+			     strlen("[(){}[]")) == 0 ? "not ": ""));
 
   return 0;
 }

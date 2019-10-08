@@ -17,3 +17,11 @@ WIP: String programs.
        6. Reverse string recursion.
        7. Reverse string without recursuion.
        8. Print all permutations of a string.
+       9. Print first non occuring character from string.
+      10. Reverse words in given string.
+      11. Check if given strings are anagram of each other.
+      12. Check if given string is palindrome or not.
+      13. Convert string to interger.
+      14. Remove given character from string.
+      15. Count words in given string.
+      16. Check if given Parenthesis string is valid or not.
