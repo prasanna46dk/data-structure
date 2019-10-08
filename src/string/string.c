@@ -8,7 +8,7 @@ char maxOccuringChar(char *str)
   for (i = 0; str[i] != '\0'; i++)
     count[ (int)str[i]]++;
   for (i = 0; i < ASCII; i++) {
-    if (count[i] > count[max])
+    if (count[i] > count[(int) max])
       max = (char) i;
   }
   return max;
@@ -50,7 +50,7 @@ void printDuplicates(char *str)
   printf("\n");
 }
 
-char *rmFromFirstString(char *src, char *dest)
+void rmFromFirstString(char *src, char *dest)
 {
   unsigned count[ASCII] = {0}, i;
 
@@ -73,7 +73,7 @@ char *rmFromFirstString(char *src, char *dest)
 
 bool areRotation(char *src, char *dest)
 {
-  int result = 0, i, j, shift, rid, dlen, slen;
+  int i, j, shift, dlen, slen;
 
   slen = strlen(src);
   dlen = strlen (dest);
@@ -101,7 +101,7 @@ bool areRotation(char *src, char *dest)
 
 void swap(char *src, unsigned start, unsigned end)
 {
-  if (start != end) {
+  if (start < end) {
     src[start] ^= src[end];
     src[end] ^= src[start];
     src[start] ^= src[end];
@@ -171,6 +171,7 @@ char *reverseWords(char *str)
     while (start < end)
       swap(str, start++, end--);
     start = i+1;
+    i++;
   }
   return str;
 }
@@ -200,15 +201,16 @@ bool isPalindrome(char *str)
 
 int strToInt(char *str)
 {
-  unsigned i;
-  int sign, result;
-  while(str[i] == ' ' ||
-	str[i] == '\t') {
+  unsigned i = 0;
+  int sign = 1, result = 0;
+  while(str[i] < '0' ||
+	str[i] >  '9') {
+    sign = (str[i] == '-') ? -1 : 1;
     i++;
   }
-  sign = (str[i] == '-') ? -1 : 1;
   while (str[i] != '\0') {
     result = (10*result) + (str[i]-'0');
+    i++;
   }
   return sign*result;
 }
@@ -217,23 +219,29 @@ char *rmGivenChar(char *str, char c)
 {
   unsigned i = 0, j = 0;
   while (true) {
-    while (str[i++] == c);
-    str[j++] = str[i];
-    if (str[i] != '\0')
+    while (str[i] != c)
       i++;
+    j = i;
+    while (str[j] == c)
+      j++;
+    swap(str, i++, j++);
+    if (str[j] == '\0')
+      break;
   }
-  str[j] = '\0';
+  str[i] = '\0';
   return str;
 }
 
 unsigned countWords(char *str)
 {
   unsigned count = 0, i = 0;
+  while (str[i] == ' ' ||
+	 str[i] == '\t'||
+	 str[i] == '\n')
+    i++;
   while(true) {
-    while (str[i] == ' ' ||
-	   str[i] == '\t')
-      i++;
-    if (str[i] == ' ') count++;
+    if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\0')
+      count++;
     if (str[i] == '\0')
       break;
     i++;
@@ -244,15 +252,15 @@ unsigned countWords(char *str)
 bool isValidParenthesis(char *str, int length)
 {
   unsigned i = 0, j = 0;
-  char stk[length];
+  char *stk = (char *) malloc(sizeof(length));
+  memset(stk, '\0', length);
   while(str[i] != '\0') {
     if (str[i] == '(' ||
 	str[i] == '{' ||
 	str[i] == '[' ||
 	str[i] == '<') {
-      stk[j++] = str[i];
-    }
-    if (str[i] == ')') {
+      stk[j] = str[i];
+    } else if (str[i] == ')') {
       if (stk[j] != '(')
 	return false;
     } else if (str[i] == '}') {
@@ -265,9 +273,10 @@ bool isValidParenthesis(char *str, int length)
       if (stk[j] != '<')
 	return false;
     } else {
-      stk[j--] = '\0';
+      stk[j] = '\0';
     }
     i++;
+    j++;
   }
   return (stk[0] == '\0');
 }
