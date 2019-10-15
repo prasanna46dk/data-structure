@@ -1,6 +1,7 @@
 #include<string.h>
 #include<stdio.h>
 #include<stdlib.h>
+#include<limits.h>
 
 #define ASCII 256
 
@@ -23,3 +24,4 @@ int strToInt(char *str);
 char *rmGivenChar(char *str, char c);
 unsigned countWords(char *str);
 bool isValidParenthesis(char *str, int length);
+char *smallestWindow(char *str, char *pattern, char *resultStr);

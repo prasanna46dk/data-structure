@@ -292,3 +292,55 @@ bool isValidParenthesis(char *str, int length)
   }
   return (stk[0] == '\0');
 }
+
+char *smallestWindow(char *str, char *pattern, char *resultStr)
+{
+  unsigned
+    i,
+    count = 0,
+    minLen = INT_MAX,
+    startIndex = -1,
+    lenWindow = 0,
+    start = 0,
+    lenStr = strlen(str),
+    lenPattern = strlen(pattern),
+    hashStr[ASCII] = {0},
+    hashPattern[ASCII] = {0};
+
+  if (lenStr < lenPattern)
+    return NULL;
+
+  for (i = 0; i < lenPattern; i++)
+    hashPattern[(unsigned) pattern[i]]++;
+
+  for (i = 0; i < lenStr; i++) {
+    hashStr[(unsigned) str[i]]++;
+
+    if (hashPattern[(unsigned) str[i]] != 0 &&
+	hashStr[(unsigned) str[i]] <= hashPattern[(unsigned) str[i]])
+      count++;
+
+    if (count == lenPattern) {
+      while (hashStr[(unsigned) str[start]] >
+	     hashPattern[(unsigned) str[start]] ||
+	     hashPattern[(unsigned) str[start]] == 0) {
+	if (hashStr[(unsigned) str[start]] >
+	    hashPattern[(unsigned) str[start]])
+	  hashStr[(unsigned) str[start]]--;
+	start++;
+      }
+
+      lenWindow = i - start + 1;
+      if (minLen > lenWindow) {
+	minLen = lenWindow;
+	startIndex = start;
+      }
+    }
+  }
+
+  if (startIndex == -1) {
+    return NULL;
+  }
+  strncpy(resultStr, str+startIndex, minLen);
+  return resultStr;
+}

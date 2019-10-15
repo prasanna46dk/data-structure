@@ -63,6 +63,9 @@ int main()
 	 "[(){}[]",
 	 (isValidParenthesis("[(){}[]",
 			     strlen("[(){}[]")) == 0 ? "not ": ""));
-
+  strcpy(str, "this is a test string");
+  char *str1 = (char *) malloc(sizeof(str));
+  printf("Smallest window where `%s` found in '%s' is '%s':",
+	"tist", str, smallestWindow(str, "tist", str1));
   return 0;
 }
