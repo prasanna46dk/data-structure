@@ -344,3 +344,9 @@ char *smallestWindow(char *str, char *pattern, char *resultStr)
   strncpy(resultStr, str+startIndex, minLen);
   return resultStr;
 }
+
+char *reverseWordOrder(char *str)
+{
+  str = reverseWords(str);
+  return revStr(str);
+}
