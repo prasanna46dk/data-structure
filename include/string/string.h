@@ -25,3 +25,4 @@ char *rmGivenChar(char *str, char c);
 unsigned countWords(char *str);
 bool isValidParenthesis(char *str, int length);
 char *smallestWindow(char *str, char *pattern, char *resultStr);
+char *reverseWordOrder(char *str);

@@ -65,7 +65,10 @@ int main()
 			     strlen("[(){}[]")) == 0 ? "not ": ""));
   strcpy(str, "this is a test string");
   char *str1 = (char *) malloc(sizeof(str));
-  printf("Smallest window where `%s` found in '%s' is '%s':",
+  printf("Smallest window where `%s` found in '%s' is '%s':\n",
 	"tist", str, smallestWindow(str, "tist", str1));
+  strcpy(str, TEST_INPUT);
+  printf("Reverse Word order of '%s' is '%s'\n",
+	 TEST_INPUT, reverseWordOrder(str));
   return 0;
 }

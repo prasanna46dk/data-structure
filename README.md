@@ -26,4 +26,5 @@ WIP: String programs.
       15. Count words in given string.
       16. Check if given Parenthesis string is valid or not.
       17. Find the smallest window in a string containing all characters of another string.
-      18. Sort array of strings. #3
+      18. Reverse order of words in string.
+      19. Sort array of strings. issue#3
