@@ -20,15 +20,17 @@
 
 int main()
 {
+  int i;
+  char *sortTestArray [] = {"Prasanna","Dattatraya"," Kulkarni"};
   char *str = (char *)malloc(strlen(TEST_INPUT));
   printf("max occuring char is: '%c'\n", maxOccuringChar(TEST_INPUT));
   printf("String without duplicates: '%s'\n",
-	 removeDuplicates(TEST_INPUT, str));
+         removeDuplicates(TEST_INPUT, str));
   printDuplicates(TEST_INPUT);
   rmFromFirstString(TEST_INPUT, TEST_INPUT_1);
   printf("'%s', '%s' are %sRotation of each other\n",
-	 TEST_INPUT_1, TEST_INPUT_2,
-	 (areRotation(TEST_INPUT_1, TEST_INPUT_2) == 0 ? "not ": ""));
+         TEST_INPUT_1, TEST_INPUT_2,
+         (areRotation(TEST_INPUT_1, TEST_INPUT_2) == 0 ? "not ": ""));
 
   // do not pass INPUT directly because INPUT is read only memory and if you try
   // to change char you will get segmentation fault.
@@ -41,34 +43,41 @@ int main()
   strcpy(str, "HOW");
   permuteString(str, 0, strlen(str)-1);
   printf("First Non repeating character in '%s' is '%c'\n",
-	 str, firstNonRepeatingChar(str));
+         str, firstNonRepeatingChar(str));
   strcpy(str, TEST_INPUT);
   printf("Reversed words of string '%s' are '%s'\n",
-	 TEST_INPUT,reverseWords(str));
+         TEST_INPUT,reverseWords(str));
   printf("'%s', '%s' are %sanagram of each other\n",
-	 TEST_INPUT_1, TEST_INPUT_6,
-	 (areAnagram(TEST_INPUT_1, TEST_INPUT_6) == 0 ? "not ": ""));
+         TEST_INPUT_1, TEST_INPUT_6,
+         (areAnagram(TEST_INPUT_1, TEST_INPUT_6) == 0 ? "not ": ""));
   printf("'%s' is %spalindrome\n",
-	 TEST_INPUT_13,(isPalindrome(TEST_INPUT_13) == 0 ? "not ": ""));
+         TEST_INPUT_13,(isPalindrome(TEST_INPUT_13) == 0 ? "not ": ""));
 
   printf("String to int of '%s' is %d\n",
-	 TEST_INPUT_11, strToInt(TEST_INPUT_11));
+         TEST_INPUT_11, strToInt(TEST_INPUT_11));
   printf("String to int of '%s' is %d\n",
-	 TEST_INPUT_12, strToInt(TEST_INPUT_12));
+         TEST_INPUT_12, strToInt(TEST_INPUT_12));
   strcpy(str, TEST_INPUT_1);
   printf("Remove Char '%c' from '%s': '%s'\n", 'a',
-	 TEST_INPUT_1, rmGivenChar(str, 'a'));
+         TEST_INPUT_1, rmGivenChar(str, 'a'));
   printf("Number of words in %s are %d\n",TEST_INPUT, countWords(TEST_INPUT));
   printf("'%s' is %sa valid string\n",
-	 "[(){}[]",
-	 (isValidParenthesis("[(){}[]",
-			     strlen("[(){}[]")) == 0 ? "not ": ""));
+         "[(){}[]",
+         (isValidParenthesis("[(){}[]",
+                             strlen("[(){}[]")) == 0 ? "not ": ""));
   strcpy(str, "this is a test string");
   char *str1 = (char *) malloc(sizeof(str));
   printf("Smallest window where `%s` found in '%s' is '%s':\n",
-	"tist", str, smallestWindow(str, "tist", str1));
+        "tist", str, smallestWindow(str, "tist", str1));
   strcpy(str, TEST_INPUT);
   printf("Reverse Word order of '%s' is '%s'\n",
-	 TEST_INPUT, reverseWordOrder(str));
+         TEST_INPUT, reverseWordOrder(str));
+  printf("Sorted output of ");
+  for(i = 0; i < 3; i++)
+    printf("%s ",sortTestArray[i]);
+  sort((const char **)sortTestArray, 3);
+  for(i = 0; i < 3; i++)
+    printf("%s ",sortTestArray[i]);
+  printf("\n");
   return 0;
 }
