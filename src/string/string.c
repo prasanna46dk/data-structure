@@ -41,11 +41,10 @@ void printDuplicates(char *str)
 
   printf("Duplicate Elements are: ");
   for (i = 0; str[i] != '\0'; i++) {
-    if (count[(int) str[i]] > 1)
-      {
-	printf("%c, ",str[i]);
-	count[(int) str[i]] = 0;
-      }
+    if (count[(int) str[i]] > 1) {
+      printf("%c, ",str[i]);
+      count[(int) str[i]] = 0;
+    }
   }
   printf("\n");
 }
@@ -90,10 +89,10 @@ bool areRotation(char *src, char *dest)
   for (i = 0; src[i] != '\0'; i++) {
     if (i + shift < dlen) {
       if (src[i] != dest[i+shift])
-	return false;
+        return false;
     } else {
       if (src[i] != dest[(i+shift) % dlen])
-	return false;
+        return false;
     }
   }
   return true;
@@ -204,7 +203,7 @@ int strToInt(char *str)
   unsigned i = 0;
   int sign = 1, result = 0;
   while(str[i] < '0' ||
-	str[i] >  '9') {
+        str[i] >  '9') {
     sign = (str[i] == '-') ? -1 : 1;
     i++;
   }
@@ -236,8 +235,8 @@ unsigned countWords(char *str)
 {
   unsigned count = 0, i = 0;
   while (str[i] == ' ' ||
-	 str[i] == '\t'||
-	 str[i] == '\n')
+         str[i] == '\t'||
+         str[i] == '\n')
     i++;
   while(true) {
     if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\0')
@@ -256,33 +255,33 @@ bool isValidParenthesis(char *str, int length)
   memset(stk, '\0', length);
   while(str[i] != '\0') {
     if (str[i] == '(' ||
-	str[i] == '{' ||
-	str[i] == '[' ||
-	str[i] == '<') {
+        str[i] == '{' ||
+        str[i] == '[' ||
+        str[i] == '<') {
       stk[j] = str[i];
     } else if (str[i] == ')') {
       if (stk[--j] != '(')
-	return false;
+        return false;
       else {
-	stk[j--] = '\0';
+        stk[j--] = '\0';
       }
     } else if (str[i] == '}') {
       if (stk[--j] != '{')
-	return false;
+        return false;
       else {
-	stk[j--] = '\0';
+        stk[j--] = '\0';
       }
     } else if (str[i] == ']') {
       if (stk[--j] != '[')
-	return false;
+        return false;
       else {
-	stk[j--] = '\0';
+        stk[j--] = '\0';
       }
     } else if (str[i] == '>') {
       if (stk[--j] != '<')
-	return false;
+        return false;
       else {
-	stk[j--] = '\0';
+        stk[j--] = '\0';
       }
     } else {
       stk[j] = '\0';
@@ -317,23 +316,23 @@ char *smallestWindow(char *str, char *pattern, char *resultStr)
     hashStr[(unsigned) str[i]]++;
 
     if (hashPattern[(unsigned) str[i]] != 0 &&
-	hashStr[(unsigned) str[i]] <= hashPattern[(unsigned) str[i]])
+        hashStr[(unsigned) str[i]] <= hashPattern[(unsigned) str[i]])
       count++;
 
     if (count == lenPattern) {
       while (hashStr[(unsigned) str[start]] >
-	     hashPattern[(unsigned) str[start]] ||
-	     hashPattern[(unsigned) str[start]] == 0) {
-	if (hashStr[(unsigned) str[start]] >
-	    hashPattern[(unsigned) str[start]])
-	  hashStr[(unsigned) str[start]]--;
-	start++;
+             hashPattern[(unsigned) str[start]] ||
+             hashPattern[(unsigned) str[start]] == 0) {
+        if (hashStr[(unsigned) str[start]] >
+            hashPattern[(unsigned) str[start]])
+          hashStr[(unsigned) str[start]]--;
+        start++;
       }
 
       lenWindow = i - start + 1;
       if (minLen > lenWindow) {
-	minLen = lenWindow;
-	startIndex = start;
+        minLen = lenWindow;
+        startIndex = start;
       }
     }
   }
@@ -349,4 +348,14 @@ char *reverseWordOrder(char *str)
 {
   str = reverseWords(str);
   return revStr(str);
+}
+
+int compare(const void* a, const void* b)
+{
+  return strcmp(*(const char**)a, *(const char**)b);
+}
+
+void sort(const char* arr[], int n)
+{
+  qsort(arr, n, sizeof(const char*), compare);
 }

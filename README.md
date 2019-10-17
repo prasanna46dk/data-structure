@@ -1,4 +1,4 @@
-# data-structure
+data-structure
 Practice data structure programs from following links.
 1. https://www.java67.com/2018/04/21-string-programming-and-coding-interview-questions-answers.html?m=1
 2. https://javarevisited.blogspot.com/2015/06/top-20-array-interview-questions-and-answers.html
@@ -27,4 +27,4 @@ WIP: String programs.
       16. Check if given Parenthesis string is valid or not.
       17. Find the smallest window in a string containing all characters of another string.
       18. Reverse order of words in string.
-      19. Sort array of strings. issue#3
+      19. Sort array of strings.
