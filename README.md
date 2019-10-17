@@ -5,10 +5,8 @@ Practice data structure programs from following links.
 3. https://www.java67.com/2018/05/top-75-programming-interview-questions-answers.html?m=1
 4. https://dev.to/javinpaul/20-basic-algorithms-problems-from-coding-interviews-4o76
 
+String programs.
 
-WIP: String programs.
-
-       0. Update readme with links.
        1. Max occuring char.
        2. Remove dulplicates from string.
        3. Print duplicates characters from string.
