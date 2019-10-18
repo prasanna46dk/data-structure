@@ -109,7 +109,7 @@ void swap(char *src, unsigned start, unsigned end)
 
 char *revStrRecursion(char *str, unsigned start, unsigned end)
 {
-  if(end <= 1)
+  if(end < 1)
     return str;
 
   if (start >= end)
