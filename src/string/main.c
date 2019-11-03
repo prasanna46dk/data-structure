@@ -4,7 +4,7 @@
 #include"string/string.h"
 
 #define TEST_INPUT "Prasanna Dattatraya Kulkarni"
-#define TEST_INPUT_1 "Prasanna"
+#define TEST_INPUT_1 ""
 #define TEST_INPUT_2 "rasannaP"
 #define TEST_INPUT_3 "Prasanna"
 #define TEST_INPUT_4 "asannaPr"
