@@ -98,7 +98,7 @@ bool areRotation(char *src, char *dest)
   return true;
 }
 
-void swap(char *src, unsigned start, unsigned end)
+void swap(char *src, int start, int end)
 {
   if (start < end) {
     src[start] ^= src[end];
@@ -107,7 +107,7 @@ void swap(char *src, unsigned start, unsigned end)
   }
 }
 
-char *revStrRecursion(char *str, unsigned start, int end)
+char *revStrRecursion(char *str, int start, int end)
 {
   if(end < 1)
     return str;
@@ -133,9 +133,9 @@ char *revStr(char *str)
   return str;
 }
 
-void permuteString(char *str, unsigned left, unsigned right)
+void permuteString(char *str, int left, int right)
 {
-  unsigned i;
+  int i;
   if (left == right)
     printf("%s\n",str);
   else {
@@ -149,7 +149,7 @@ void permuteString(char *str, unsigned left, unsigned right)
 
 char firstNonRepeatingChar(char *str)
 {
-  unsigned count[ASCII] = {0}, i;
+  int count[ASCII] = {0}, i;
   for (i = 0; str[i] != '\0'; i++) {
     count[(int) str[i]] += 1;
   }
@@ -163,7 +163,7 @@ char firstNonRepeatingChar(char *str)
 
 char *reverseWords(char *str)
 {
-  unsigned i = 0, start = 0, end;
+  int i = 0, start = 0, end;
   while (str[i] != '\0') {
     while (str[i] != ' ' && str[i] != '\0')
       i++;
@@ -191,7 +191,7 @@ bool areAnagram(char *src, char *dest)
 
 bool isPalindrome(char *str)
 {
-  unsigned start = 0, end = strlen(str)-1;
+  int start = 0, end = strlen(str)-1;
   while (start < end) {
     if (str[start++] != str[end--])
       return false;
@@ -201,7 +201,7 @@ bool isPalindrome(char *str)
 
 int strToInt(char *str)
 {
-  unsigned i = 0;
+  int i = 0;
   int sign = 1, result = 0;
   while(str[i] < '0' ||
         str[i] >  '9') {
@@ -217,7 +217,7 @@ int strToInt(char *str)
 
 char *rmGivenChar(char *str, char c)
 {
-  unsigned i = 0, j = 0;
+  int i = 0, j = 0;
   while (true) {
     while (str[i] != c)
       i++;
@@ -232,9 +232,9 @@ char *rmGivenChar(char *str, char c)
   return str;
 }
 
-unsigned countWords(char *str)
+int countWords(char *str)
 {
-  unsigned count = 0, i = 0;
+  int count = 0, i = 0;
   while (str[i] == ' ' ||
          str[i] == '\t'||
          str[i] == '\n')
@@ -251,7 +251,7 @@ unsigned countWords(char *str)
 
 bool isValidParenthesis(char *str, int length)
 {
-  unsigned i = 0, j = 0;
+  int i = 0, j = 0;
   char *stk = (char *) malloc(sizeof(length));
   memset(stk, '\0', length);
   while(str[i] != '\0') {
@@ -295,7 +295,7 @@ bool isValidParenthesis(char *str, int length)
 
 char *smallestWindow(char *str, char *pattern, char *resultStr)
 {
-  unsigned
+  int
     i,
     count = 0,
     minLen = INT_MAX,
@@ -311,22 +311,22 @@ char *smallestWindow(char *str, char *pattern, char *resultStr)
     return NULL;
 
   for (i = 0; i < lenPattern; i++)
-    hashPattern[(unsigned) pattern[i]]++;
+    hashPattern[(int) pattern[i]]++;
 
   for (i = 0; i < lenStr; i++) {
-    hashStr[(unsigned) str[i]]++;
+    hashStr[(int) str[i]]++;
 
-    if (hashPattern[(unsigned) str[i]] != 0 &&
-        hashStr[(unsigned) str[i]] <= hashPattern[(unsigned) str[i]])
+    if (hashPattern[(int) str[i]] != 0 &&
+        hashStr[(int) str[i]] <= hashPattern[(int) str[i]])
       count++;
 
     if (count == lenPattern) {
-      while (hashStr[(unsigned) str[start]] >
-             hashPattern[(unsigned) str[start]] ||
-             hashPattern[(unsigned) str[start]] == 0) {
-        if (hashStr[(unsigned) str[start]] >
-            hashPattern[(unsigned) str[start]])
-          hashStr[(unsigned) str[start]]--;
+      while (hashStr[(int) str[start]] >
+             hashPattern[(int) str[start]] ||
+             hashPattern[(int) str[start]] == 0) {
+        if (hashStr[(int) str[start]] >
+            hashPattern[(int) str[start]])
+          hashStr[(int) str[start]]--;
         start++;
       }
 
