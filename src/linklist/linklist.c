@@ -22,6 +22,16 @@ Node *createList(Node *head, Node *newNode)
   return head;
 }
 
+int linkListIndexing(Node* head, int i)
+{
+  int index = 0;
+  Node *current = head;
+  while(index++ != i) {
+    current = current -> next;
+  }
+  return current -> data;
+}
+
 unsigned listLength(Node *head)
 {
   Node *temp = head;
@@ -96,6 +106,103 @@ bool findLoop(Node *head)
       return false;
   }
   return true;
+}
+
+Node *insertNodeInMiddle(Node *head, Node *newNode)
+{
+  Node *slowPtr = NULL, *fastPtr = NULL;
+  if(!head)
+    return newNode;
+  if(!head -> next) {
+    newNode -> next = head;
+    return newNode;
+  }
+  slowPtr = head;
+  fastPtr = head -> next;
+  while(fastPtr -> next && fastPtr -> next -> next) {
+    slowPtr = slowPtr -> next;
+    fastPtr = fastPtr -> next -> next;
+  }
+  newNode -> next = slowPtr ->next;
+  slowPtr -> next = newNode;
+  return head;
+}
+
+Node *findMiddle(Node *head)
+{
+  Node *slowPtr = head, *fastPtr = head;
+  while(fastPtr && fastPtr -> next && fastPtr -> next -> next) {
+    slowPtr = slowPtr -> next;
+    fastPtr = fastPtr -> next -> next;
+  }
+  return slowPtr;
+}
+
+Node *checkIfLoop(Node *head)
+{
+  Node *slowPtr = head, *fastPtr = head;
+  while(slowPtr && fastPtr && fastPtr->next) {
+    slowPtr = slowPtr -> next;
+    fastPtr = fastPtr -> next -> next;
+    if(slowPtr == fastPtr)
+      {
+	removeLoop(head, slowPtr);
+	return slowPtr;
+      }
+  }
+  return NULL;
+}
+
+Node *removeLoop(Node *head, Node *loopNode)
+{
+  Node *p = head;
+  while(p -> next != loopNode)
+    p = p -> next;
+  p ->next = NULL;
+  return head;
+}
+
+//remove duplicates from unsorted ll
+Node *remDup(Node *head)
+{
+  Node *p = head, *q = NULL, *prev = NULL;
+  while(p) {
+    prev = p;
+    q = p -> next;
+    while(q) {
+      if(p -> data == q -> data)
+	{
+	  prev -> next = q -> next;
+	  q -> next = NULL;
+	  free(q);
+	  q = prev -> next;
+	}
+      else
+	{
+	prev = q;
+	q = q-> next;
+	}
+    }
+    p = p ->next;
+  }
+  return head;
+}
+
+//Kth node from end
+Node *kthNodeFromEnd(Node *head, int k)
+{
+  Node *slowPtr = head, *fastPtr = head;
+  int i = 0;
+  while((i++ != k) && fastPtr) {
+    fastPtr = fastPtr -> next;
+  }
+  if(!fastPtr)
+    return NULL;
+  while(fastPtr) {
+    slowPtr = slowPtr -> next;
+    fastPtr = fastPtr -> next;
+  }
+  return slowPtr;
 }
 
 /* void nthNodeFromLast(Node *head, unsigned n) */
