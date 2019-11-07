@@ -7,13 +7,13 @@ void swap(int *a, int *b)
   *a ^= *b;
 }
 
-void display(int arr[])
+void display(int *arr)
 {
   int i;
   for(i = 0; i < SIZE; i++)
     printf("%d ", arr[i]);
 }
-void bubbleSort(int arr[])
+void bubbleSort(int *arr)
 {
   int i,j;
   for(i = 0; i< SIZE - 1; i++) {
@@ -28,7 +28,7 @@ void bubbleSort(int arr[])
   }
 }
 
-void mergeSort(int arr[], int first, int last)
+void mergeSort(int *arr, int first, int last)
 {
   int mid;
   if(first < last) {
@@ -39,7 +39,7 @@ void mergeSort(int arr[], int first, int last)
   }
 }
 
-void merge(int arr[], int first, int mid, int last)
+void merge(int *arr, int first, int mid, int last)
 {
   int i,j,k;
   int temp[SIZE];
@@ -60,7 +60,7 @@ void merge(int arr[], int first, int mid, int last)
     arr[i]=temp[j];
 }
 
-void quickSort(int arr[], int first, int last)
+void quickSort(int *arr, int first, int last)
 {
   int sortedIndex;
   if(first < last) {
@@ -70,7 +70,7 @@ void quickSort(int arr[], int first, int last)
   }
 }
 
-int divide(int arr[], int first, int last)
+int divide(int *arr, int first, int last)
 {
   int i, j, pivot;
   pivot = first;
