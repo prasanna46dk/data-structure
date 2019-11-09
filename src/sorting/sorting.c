@@ -28,36 +28,55 @@ void bubbleSort(int *arr, int size)
   }
 }
 
-void mergeSort(int *arr, int first, int last)
+void merge(int *arr, int start, int mid, int end)
 {
-  int mid;
-  if(first < last) {
-    mid = first + (last - first)/2;
-    mergeSort(arr, first, mid);
-    mergeSort(arr, mid + 1, last);
-    merge(arr, first, mid, last);
+  int
+    leftSize  = mid-start+1,
+    rightSize = end-mid,
+    leftArr[leftSize],
+    rightArr[rightSize],
+    i,
+    j,
+    k;
+
+  memcpy(leftArr, )
+  for(i = 0; i < (leftSize); i++)
+    leftArr[i] = arr[start+i];
+
+  for(j = 0; j < (start - mid); i++)
+    rightArr[j] = arr[mid+j];
+
+  for(i = 0, j = 0, k = start;
+       i < (leftSize) &&
+	 j < (rightSize);
+       k++) {
+
+    if(
+       // leftArr[i] != INT_MAX &&
+       // rightArr[i] != INT_MAX &&
+       leftArr[i] <= rightArr[j]) {
+      arr[k] = leftArr[i++];
+    } else {
+      arr[k] = rightArr[j++];
+    }
   }
+
+  while(i < leftSize)
+      arr[k++] = leftArr[i++];
+
+  while(j < rightSize)
+      arr[k++] = rightArr[j++];
 }
 
-void merge(int *arr, int first, int mid, int last)
+void mergeSort(int *arr, int start, int end)
 {
-  int i,j,k;
-  int temp[SIZE];
-  i = first;
-  j = mid + 1;
-  k = 0;
-  while(i <= mid && j <= last) {
-      if(arr[i] < arr[j])
-	  temp[k++] = arr[i++];
-      else
-	  temp[k++] = arr[j++];
+  int mid;
+  if(start < end) {
+    mid = start + (end - start)/2;
+    mergeSort(arr, start, mid);
+    mergeSort(arr, mid + 1, end);
+    merge(arr, start, mid, end);
   }
-  while(i <= mid)
-      temp[k++] = arr[i++];
-  while(j <= last)
-      temp[k++] = arr[j++];
-  for(i = first, j = 0; i <= last;i++,j++)
-    arr[i]=temp[j];
 }
 
 void quickSort(int *arr, int left, int right)
@@ -76,7 +95,7 @@ int partition(int *arr, int left, int right)
   pivot = arr[right];
   i = left-1;
   for(j = left; j < right; j++) {
-    if(pivot > arr[j]) {
+    if(arr[j] < pivot) {
       i++;
       swapNum(arr, i, j);
     }
