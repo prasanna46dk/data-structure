@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<limits.h>
-#define SIZE 3
+#define SIZE 20
 #define RANGE 25
 
 // buble sort
