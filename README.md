@@ -36,3 +36,15 @@ Linklist programs:
        4. Print list.
        5. Print node.
        6. Find loop in list.
+
+Sort programs:
+
+       1. Bubble Sort.
+       2. Merge Sort.
+       3. Quick Sort.
+       4. Insertion Sort.
+       5. Heap sort.
+       6. Selection sort.
+       7. Radix sort.
+       8. Bucket sort.
+       9. Shell sort.
