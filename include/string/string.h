@@ -1,4 +1,4 @@
-#include<string.h>
+#include<string.h>	// to manipulate the array of characters
 #include<stdio.h>
 #include<stdlib.h>
 #include<limits.h>
