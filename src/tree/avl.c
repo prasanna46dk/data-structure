@@ -1,11 +1,4 @@
-#include<stdio.h>
-#include<stdlib.h>
-
-#define max(x, y) (x > y ? x : y)
-typedef struct treeNode {
-  int iData, iHeight;
-  struct treeNode *tLeft, *tRight;
-}tree;
+#include "tree/avl.h"
 
 tree *createTNode(int iData)
 {
@@ -23,7 +16,7 @@ int height(tree *tRoot)
   return 1 + max(height(tRoot->tLeft), height(tRoot->tRight));
 }
 
-int getBalence(tree *tRoot)
+int getBalance(tree *tRoot)
 {
   if (!tRoot)
     return 0;
@@ -59,7 +52,7 @@ tree *rightRotate(tree *tRoot)
 
 tree *insert(tree *tRoot, int iData)
 {
-  int iHeight, iBalence;
+  int iBalence;
   if (!tRoot)
     return createTNode(iData);
 
@@ -72,7 +65,7 @@ tree *insert(tree *tRoot, int iData)
 
   tRoot->iHeight = 1 + max(height(tRoot->tLeft),height(tRoot->tRight));
 
-  iBalence = getBalence(tRoot);
+  iBalence = getBalance(tRoot);
 
   if (iBalence > 1 &&
       tRoot->tLeft->iData > iData)
@@ -105,16 +98,4 @@ void preOrder(tree *tRoot)
   printf("%d ", tRoot->iData);
   preOrder(tRoot->tLeft);
   preOrder(tRoot->tRight);
-}
-
-int main()
-{
-  int i;
-  tree *tRoot = NULL;
-  for(i = 0; i < 10; i++)
-    tRoot = insert(tRoot, i);
-
-  preOrder(tRoot);
-  printf("\n");
-  return 0;
 }

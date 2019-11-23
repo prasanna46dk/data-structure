@@ -49,3 +49,6 @@ Sort programs:
        7. Radix sort.
        8. Bucket sort.
        9. Shell sort.
+
+Tree programs:
+       1. AVL tree
