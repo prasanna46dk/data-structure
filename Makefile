@@ -5,11 +5,15 @@ OBJFILE=$(BIN)/objects
 STRING=$(SRC)/string
 LIST=$(SRC)/linklist
 SORT=$(SRC)/sorting
+TREE=$(SRC)/tree
 CC=gcc -g
 CCFLAGS= -Wall -Werror
 EXE:=$(shell find $(BIN) -maxdepth 1 -type f -executable)
 
-all: string linklist sort
+all: createProject string linklist sort tree
+
+createProject:
+	mkdir -p $(OBJFILE)
 
 string:
 	@echo "Compiling string programs..."
@@ -37,6 +41,19 @@ sort:
 	-o $(BIN)/sortingMain -I $(INCLUDE)
 	@echo "Running sorting programs..."
 	$(BIN)/sortingMain
+
+tree:
+	@echo "Compiling tree programs..."
+	@$(CC) $(CCFLAGS) -c $(TREE)/tree.c \
+	-o $(OBJFILE)/tree.o -I $(INCLUDE)
+	@$(CC) $(CCFLAGS) -c $(TREE)/stack.c \
+	-o $(OBJFILE)/stack.o -I $(INCLUDE)
+	@$(CC) $(CCFLAGS) $(TREE)/main.c \
+	$(OBJFILE)/tree.o \
+	$(OBJFILE)/stack.o \
+	-o $(BIN)/treeMain -I $(INCLUDE)
+	@echo "Running tree programs..."
+	$(BIN)/treeMain 8 9 13 16 47 20 1 88 34 90
 
 clean:
 	rm -rv $(EXE) $(OBJFILE)/*
