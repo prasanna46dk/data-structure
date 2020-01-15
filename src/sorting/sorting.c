@@ -22,8 +22,8 @@ void bubbleSort(int *arr, int size)
   int i,j;
   for(i = 0; i < size-1; i++) {
     for(j = 1; j < size - i; j++) {
-      if(arr[j - 1] > arr[j]) 
-	swapNum(arr, j - 1, j);  
+      if(arr[j - 1] > arr[j])
+	swapNum(arr, j - 1, j);
     }
   }
 }
@@ -39,22 +39,18 @@ void merge(int *arr, int start, int mid, int end)
     j,
     k;
 
-  memcpy(leftArr, )
-  for(i = 0; i < (leftSize); i++)
+  for(i = 0; i < leftSize; i++)
     leftArr[i] = arr[start+i];
 
-  for(j = 0; j < (start - mid); i++)
-    rightArr[j] = arr[mid+j];
+  for(j = 0; j < rightSize; j++)
+    rightArr[j] = arr[mid+1+j];
 
   for(i = 0, j = 0, k = start;
-       i < (leftSize) &&
-	 j < (rightSize);
-       k++) {
+      i < (leftSize) &&
+	j < (rightSize);
+      k++) {
 
-    if(
-       // leftArr[i] != INT_MAX &&
-       // rightArr[i] != INT_MAX &&
-       leftArr[i] <= rightArr[j]) {
+    if(leftArr[i] < rightArr[j]) {
       arr[k] = leftArr[i++];
     } else {
       arr[k] = rightArr[j++];
@@ -62,10 +58,10 @@ void merge(int *arr, int start, int mid, int end)
   }
 
   while(i < leftSize)
-      arr[k++] = leftArr[i++];
+    arr[k++] = leftArr[i++];
 
   while(j < rightSize)
-      arr[k++] = rightArr[j++];
+    arr[k++] = rightArr[j++];
 }
 
 void mergeSort(int *arr, int start, int end)
