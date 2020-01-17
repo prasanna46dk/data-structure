@@ -63,7 +63,7 @@ void merge(int *arr, int start, int mid, int end)
   while(j < rightSize)
     arr[k++] = rightArr[j++];
 }
-
+ 
 void mergeSort(int *arr, int start, int end)
 {
   int mid;

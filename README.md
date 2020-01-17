@@ -4,6 +4,7 @@ Practice data structure programs from following links.
 2. https://javarevisited.blogspot.com/2015/06/top-20-array-interview-questions-and-answers.html
 3. https://www.java67.com/2018/05/top-75-programming-interview-questions-answers.html?m=1
 4. https://dev.to/javinpaul/20-basic-algorithms-problems-from-coding-interviews-4o76
+5. https://javarevisited.blogspot.com/2017/07/top-10-linked-list-coding-questions-and.html 
 
 String programs:
 
@@ -36,3 +37,18 @@ Linklist programs:
        4. Print list.
        5. Print node.
        6. Find loop in list.
+
+Sort programs:
+
+       1. Bubble Sort.
+       2. Merge Sort.
+       3. Quick Sort.
+       4. Insertion Sort.
+       5. Heap sort.
+       6. Selection sort.
+       7. Radix sort.
+       8. Bucket sort.
+       9. Shell sort.
+
+Tree programs:
+       1. AVL tree

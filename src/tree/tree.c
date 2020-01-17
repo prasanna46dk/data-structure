@@ -31,23 +31,28 @@ Node *createTree(Node *root, Node *newNode)
 void preorder(Node *root)
 {
   Stack *s = createStack(SIZE);
-  while(root) {
-    printf("%d", root ->data);
-    root = root -> left;
+  while(1) {
+    while(root) {
+      printf("%d", root ->data);
+      push(s, root);
+      root = root -> left;
+    }
+
+    if(isEmpty(s))
+      return;
+
+    root = top(s);
+    pop(s);
+    root = root -> right;
+    deleteStack(s);
   }
-
-  if(isEmpty(s))
-    return;
-
-  root = top(s);
-  pop(s);
-  root = root -> right;
-  deleteStack(s);
 }
+
  void inorder(Node *root)
 {
   Stack *s = createStack(SIZE);
   while(root) {
+    push(s, root);
     root = root -> left;
   }
 
@@ -58,7 +63,7 @@ void preorder(Node *root)
   pop(s);
   printf("%d", root -> data);
   root = root -> right;
-  deleteStack(s);
+ deleteStack(s);
 }
 
 void postorder(Node *root)
