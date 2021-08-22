@@ -3,6 +3,7 @@
 
 char maxOccuringChar(char *str)
 {
+  // ASCII is defined as 256
   unsigned count[ASCII] = {0}, i;
   char max = 0;
   for (i = 0; str[i] != '\0'; i++)
